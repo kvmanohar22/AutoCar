@@ -1,8 +1,8 @@
 //assign the pin numbers
-int left_pin;
-int right_pin;
-int forward_pin;
-int reverse_pin;
+int left_pin = 6;
+int right_pin = 7;
+int forward_pin = 8;
+int reverse_pin = 9;
 
 
 void setup(){
