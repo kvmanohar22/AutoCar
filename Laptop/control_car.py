@@ -5,7 +5,7 @@ from pygame.locals import *
 
 #initialise 
 pygame.init()
-ser = serial.Serial('/dev/ttyUSB0', 11520, timeout=1)
+ser = serial.Serial('/dev/ttyUSB0', 115200, timeout=1)
 repeat = True
 
 def steer():
@@ -48,7 +48,7 @@ def steer():
 					repeat = False
 					ser.close()
 					break
-					
+
 			#no key pressed??
 			elif event.type == pygame.KEYUP:
 				ser.write(48)
