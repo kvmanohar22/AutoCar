@@ -67,6 +67,7 @@ void forward_right(){
 	Serial.println("Moving forward right...\n");
 	digitalWrite(forward_pin, HIGH);
 	digitalWrite(right_pin, HIGH);
+        delay(1000);
 	delay(time);
 }
 
@@ -103,19 +104,19 @@ void reset(){
 void send_command(int command){
 	switch(command){
 		//initial command
-		case 0: reset(); break;
+		case 48: reset(); break;
 		
 		//single commands
-		case 1: forward(); break;
-		case 2: reverse(); break;
-		case 3: left(); break;
-		case 4: right(); break;
+		case 49: forward(); break;
+		case 50: reverse(); break;
+		case 51: left(); break;
+		case 52: right(); break;
 
 		//complex commands
-		case 5: forward_right(); break;
-		case 6: forward_left(); break;
-		case 7: reverse_right(); break;
-		case 8: reverse_left(); break;
+		case 53: forward_right(); break;
+		case 54: forward_left(); break;
+		case 55: reverse_right(); break;
+		case 56: reverse_left(); break;
 	
 		//invalid
 		default: Serial.print("Invalid command!\n");	

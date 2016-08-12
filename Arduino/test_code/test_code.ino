@@ -14,19 +14,25 @@ void setup(){
 
 
 void loop(){
+  
+  /*
 	//Test Case #1
 	digitalWrite(forward_pin, HIGH);
-	delay(2000);
-	digitalWrite(reverse_pin, LOW);
-	delay(2000);
+	delay(1000);
+	digitalWrite(forward_pin, LOW);
+	delay(1000);
 
+*/
 	//Test Case #2
+
 	digitalWrite(forward_pin, HIGH);
-	delay(2000);
+	delay(100);
 	digitalWrite(forward_pin, LOW);	
-	delay(2000);
+	delay(100);
 	digitalWrite(reverse_pin, HIGH);
-	delay(2000);
+	delay(100);
 	digitalWrite(reverse_pin, LOW);
-	delay(2000);
+	delay(100);
+
+
 }
