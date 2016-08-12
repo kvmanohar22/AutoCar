@@ -1,1 +1,1 @@
-Autonomous car which is based on Artificial Neural Networks
+Autonomous remote controlled car which is based on Artificial Neural Networks
