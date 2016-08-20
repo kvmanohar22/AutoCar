@@ -22,18 +22,17 @@ void setup() {
 
 
 void loop(){
-	//reset all the pins
-	reset();
-	
+  	
 	//read the input from port
 	if(Serial.available() > 0){
 		command = Serial.read();
 		Serial.print("Recieved: ");
 		Serial.println(command);
 	}
-	else
+	else{
 		reset();
-
+                command = 48;
+        }
 	send_command(command);	
 }
 
@@ -104,9 +103,11 @@ void reset(){
 void send_command(int command){
 	switch(command){
 		//initial command
+                //this is integer 0
 		case 48: reset(); break;
 		
 		//single commands
+                //1 represents 49
 		case 49: forward(); break;
 		case 50: reverse(); break;
 		case 51: left(); break;
@@ -122,15 +123,3 @@ void send_command(int command){
 		default: Serial.print("Invalid command!\n");	
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
