@@ -5,7 +5,7 @@ import io
 import socket
 import struct
 import time
-import pygame
+#import pygame
 from pygame.locals import *
 
 
@@ -22,17 +22,19 @@ connection = server_socket.accept()[0].makefile('rb')
 #initialise some variables
 input_data = np.zeros((1, 38400))
 output_labels = np.zeros((4, 4)).astype(np.float32)
+temp_label = np.zeros((1, 4))
+output_data = np.zeros((1, 4))
 for i in xrange(4):
 	output_labels[i, i] = 1
 
 print 'Shape of input data: ', input_data.shape
 print 'Shape of output labels: ', output_labels.shape
 
-print 'Initialising pygame...'
-pygame.init()
+#print 'Initialising pygame...'
+#pygame.init()
 
 print 'Opening serial port...'
-ser = serial.Serial('/dev/ttyUSB0', 115200, timeout=1)
+ser = serial.Serial('/dev/ttyUSB1', 115200, timeout=1)
 
 frame = 1
 
@@ -70,6 +72,7 @@ try:
 		cv2.waitKey(1) & 0xFF
 
 
+		"""
 		#read the corresponding input from the human driver
 		for event in pygame.event.get():
 			if event.type == pygame.key.get_pressed():
@@ -116,15 +119,20 @@ try:
 
 			break
 
+		"""
+
 		#write the input command to the stack
 		print 'Collected corresponding human driver input...\n'
-		output_labels = np.vstack((output_labels, temp_label))
+		output_data = np.vstack((output_data, temp_label))
 
 finally:
+	input_data = input_data[1:, :]
+	output_data = output_data[1:, :]
+
 	print 'shape of the final input data: ', input_data.shape
-	print 'shape of the final output data: ', output_labels.shape
+	print 'shape of the final output data: ', output_data.shape
 
 	#save the entire image data and output data into file
-	np.savez('/home/kv/Git/AutoCar/Laptop/Training_data/Train_data.npz', train=input_data, labels=output_labels)
+	np.savez('/home/kv/Git/AutoCar/Laptop/Training_data/Train_data.npz', train=input_data, labels=output_data)
 	connection.close()
 	server_socket.close()
