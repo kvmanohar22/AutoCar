@@ -6,7 +6,7 @@ import socket
 import struct
 import time
 #import pygame
-from pygame.locals import *
+#from pygame.locals import *
 
 
 host = '0.0.0.0'
@@ -72,10 +72,32 @@ try:
 		cv2.waitKey(1) & 0xFF
 
 
-		"""
 		#read the corresponding input from the human driver
+		print 'Collected corresponding human driver input...',
+		command = raw_input('...')
+
+		if command == 'w':
+			ser.write(chr(49))
+			temp_label = output_labels[0]
+			print 'front\n'
+		elif command == 's':
+			ser.write(chr(50))
+			temp_label = output_labels[1]
+			print 'back\n'
+		elif command == 'a':
+			ser.write(chr(51))
+			temp_label = output_labels[2]
+			print 'left\n'
+		elif command == 'd':
+			ser.write(chr(52))
+			temp_label = output_labels[3]
+			print 'right\n'
+
+
+
+		"""
 		for event in pygame.event.get():
-			if event.type == pygame.key.get_pressed():
+			if event.type == KEYDOWN:
 				Key_input = pygame.key.get_pressed()
 
 				#simple commands
@@ -122,7 +144,6 @@ try:
 		"""
 
 		#write the input command to the stack
-		print 'Collected corresponding human driver input...\n'
 		output_data = np.vstack((output_data, temp_label))
 
 finally:
