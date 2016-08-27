@@ -66,7 +66,6 @@ void forward_right(){
 	Serial.println("Moving forward right...\n");
 	digitalWrite(forward_pin, HIGH);
 	digitalWrite(right_pin, HIGH);
-        delay(1000);
 	delay(time);
 }
 
